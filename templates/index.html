@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>אתר המלצות של איתמר</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #db7676; /* צבע רקע בהיר לכל הדף */
+            color: #333;
+            margin: 0;
+            padding: 20px;
+        }
+        h1 {
+            color: #4682b4; /* צבע כותרת ראשית */
+        }
+        h2 {
+            color: #2e8b57; /* צבע כותרת משנית */
+        }
+        form {
+            background-color: #bd1919; /* צבע רקע לטופס */
+            border: 1px solid #3dc712; /* גבול לטופס */
+            padding: 20px;
+            border-radius: 5px;
+            margin-bottom: 20px;
+        }
+        label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+        input[type="text"] {
+            width: 100%;
+            padding: 8px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 3px;
+        }
+        button {
+            background-color: #4682b4; /* צבע רקע לכפתור */
+            color: white;
+            padding: 10px 15px;
+            border: none;
+            border-radius: 3px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #5a9bd3; /* צבע רקע לכפתור בעת מעבר עכבר */
+        }
+        ul {
+            list-style-type: none;
+            padding: 0;
+        }
+        li {
+            background-color: #ffffff; /* צבע רקע לפריטים ברשימה */
+            border: 1px solid #ccc; /* גבול לפריטים ברשימה */
+            padding: 10px;
+            border-radius: 3px;
+            margin-bottom: 5px;
+        }
+    </style>
+</head>
+<body>
+    <h1>אתר המלצות של איתמר</h1>
+    <form action="/add" method="post">
+        <label for="user_id">מזהה משתמש:</label>
+        <input type="text" id="user_id" name="user_id" required>
+        <label for="category">קטגוריה:</label>
+        <input type="text" id="category" name="category" required>
+        <label for="preference">העדפה:</label>
+        <input type="text" id="preference" name="preference" required>
+        <button type="submit">הוסף העדפה</button>
+    </form>
+    <h2>העדפות</h2>
+    <ul>
+        {% for preference in preferences %}
+            <li>{{ preference['user_id'] }} - {{ preference['category'] }} - {{ preference['preference'] }}</li>
+        {% endfor %}
+    </ul>
+    <h2>המלצות</h2>
+    <ul>
+        {% for recommendation in recommendations %}
+            <li>{{ recommendation['user_id'] }} - {{ recommendation['recommendation'] }}</li>
+        {% endfor %}
+    </ul>
+</body>
+</html>

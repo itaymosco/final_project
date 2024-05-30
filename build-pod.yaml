@@ -4,11 +4,11 @@ metadata:
   name: docker-image-build
 spec:
   containers:
-    - name: ez-docker-helm-build
-      image: ezezeasy/ez-docker-helm-build:1.41
+    - name: jenkins-agent
+      image: jenkins/inbound-agent:latest
       imagePullPolicy: Always
-      securityContext:
-        privileged: true
+      command: ["cat"]
+      tty: true
 
     - name: python-test
       image: python:3.9-slim

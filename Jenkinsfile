@@ -4,7 +4,7 @@ pipeline {
             label 'itay'
             idleMinutes 5
             yamlFile 'build-pod.yaml'
-            defaultContainer 'ez-docker-helm-build'
+            defaultContainer 'jenkins-agent'
         }
     }
     environment {
@@ -22,6 +22,18 @@ pipeline {
             steps {
                 script {
                     dockerImage = docker.build("${DOCKER_IMAGE}:latest", '--no-cache .')
+                }
+            }
+        }
+        stage('push docker image'){
+            when{
+                branch 'master'
+            }
+            steps{
+                script {
+                    docker.withRegistry('https://registry.hub.docker.com', 'docker-creds') {
+                        dockerImage.push("latest")
+                    }  
                 }
             }
         }

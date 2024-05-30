@@ -4,7 +4,7 @@ pipeline {
             label 'itay'
             idleMinutes 5
             yamlFile 'build-pod.yaml'
-            defaultContainer 'jenkins-agent'
+            defaultContainer 'ez-docker-helm-build'
         }
     }
     environment {

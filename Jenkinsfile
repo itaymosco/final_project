@@ -11,7 +11,7 @@ pipeline {
         GITHUB_CREDS = 'github-pat'
         DOCKER_IMAGE = 'itay1608/recommendation_app'
         MONGO_URI = 'mongodb://root:root@mongo:27017/recommendations_db?authSource=admin'
-        GITHUB_TOKEN=credentials("github-creds")
+        GITHUB_TOKEN=credentials("github-pat")
         GITHUB_API_URL ='https://api.github.com'
         GITHUB_REPO ="itaymosco/final_project"
     }
@@ -47,7 +47,7 @@ pipeline {
                 }
             }
             steps {
-                withCredentials([string(credentialsId: 'github-creds', variable: 'GITHUB_TOKEN')]) {
+                withCredentials([string(credentialsId: 'github-pat', variable: 'GITHUB_TOKEN')]) {
                     script {
                         def branchName = env.BRANCH_NAME
                         def pullRequestTitle = "Merge ${branchName} into master"

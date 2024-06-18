@@ -4,7 +4,7 @@ import os
  
 def create_app():
     app = Flask(__name__)
-    app.config["MONGO_URI"] = os.getenv("MONGO_URI", "mongodb://root:root@mongo:27017/recommendations_db?authSource=admin")
+    app.config["MONGO_URI"] = os.getenv("MONGO_URI", "mongodb://root:your-root-password@mongo-mongodb:27017/recommendations_db?authSource=admin")
     mongo = PyMongo(app)
  
     @app.route('/')

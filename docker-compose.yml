@@ -9,7 +9,7 @@ services:
       - mongo
     environment:
       - MONGO_URI=mongodb://root:root@mongo:27017/recommendations_db?authSource=admin
-    command: [ "python", "app.py"]
+    
 
   mongo:
     image: mongo:latest

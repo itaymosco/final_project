@@ -28,6 +28,15 @@ pipeline {
                 }
             }
         }
+        stage("Unit Test"){
+            steps{
+                script {
+                    sh "docker-compose -f docker-compose.yaml up --build -d"
+                    sh "docker-compose -f docker-compose.yaml run test"
+                    sh "docker-compose -f docker-compose.yaml down"
+                }
+            }
+        }
         stage('push docker image'){
             when{
                 branch 'master'
